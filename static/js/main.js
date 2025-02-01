@@ -77,11 +77,11 @@ const searchHandler = _.debounce(async (query, api) => {
   try {
     let url = '';
     if (api === 'api1') {
-      url = `http://127.0.0.1:5000/search1?q=${query}`;  // 网易云音乐的搜索接口
+      url = `http://192.168.1.10:5000/search1?q=${query}`;  // 网易云音乐的搜索接口
     } else if (api === 'api2') {
-      url = `http://127.0.0.1:5000/search2?q=${query}`;  // 酷狗音乐的搜索接口
+      url = `http://192.168.1.10:5000/search2?q=${query}`;  // 酷狗音乐的搜索接口
     } else if (api === 'api3') {
-      url = `http://127.0.0.1:5000/search3?q=${query}`;  // 酷我音乐的搜索接口
+      url = `http://192.168.1.10:5000/search3?q=${query}`;  // 酷我音乐的搜索接口
     }
 
     const response = await fetch(url);
