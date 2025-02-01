@@ -38,7 +38,7 @@ searchIcon.addEventListener('click', () => {
   if (query) {
     searchHandler(query);
   } else {
-    alert('请输入搜索内容！');
+    alert('Please enter your search!');
   }
   setTimeout(() => {
     searchIcon.classList.remove('clicked');
@@ -47,7 +47,7 @@ searchIcon.addEventListener('click', () => {
 // 显示加载状态
 const showLoading = (show) => {
   dom.resultsContainer.innerHTML = show ?
-    `<div class="loading"><i class="fas fa-spinner fa-spin"></i> 小汪正在努力搜索中...</div>` :
+    `<div class="loading"><i class="fas fa-spinner fa-spin"></i> Xudong is working hard to search...</div>` :
     '';
 };
 
@@ -69,7 +69,7 @@ const searchHandler = _.debounce(async (query, api) => {
     dom.resultsContainer.innerHTML = `
       <div class="placeholder">
         <i class="fas fa-music"></i>
-        <p>输入关键词搜索音乐</p>
+        <p>Enter keywords to search for music</p>
       </div>`;
     return;
   }
@@ -298,9 +298,9 @@ const playTrack = (index) => {
   });
   const checkTimeout = setTimeout(() => {
       if (!currentSound.playing()) {
-        showError("该音乐是付费音乐，小汪暂时不能播放......");
+        showError("This music is paid music and cannot be played for the time being......");
       }
-  }, 3000);
+  }, 15000);
   if (!dom.playerContainer.classList.contains('active')) {
     dom.playerContainer.classList.add('active');
   }
