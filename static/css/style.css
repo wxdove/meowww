@@ -12,6 +12,20 @@ body {
     min-height: 100vh;
 }
 
+@media (max-width: 600px) {
+  body {
+    font-size: 14px;
+    margin: 10px;
+  }
+}
+
+/* 针对中等屏幕（例如平板） */
+@media (max-width: 1024px) {
+  body {
+    font-size: 15px;
+    margin: 15px;
+  }
+}
 .search-container {
     max-width: 800px;
     margin: 30px auto;
