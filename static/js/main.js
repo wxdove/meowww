@@ -76,7 +76,7 @@ const searchHandler = _.debounce(async (query, api) => {
   showLoading(true);  // 显示加载动画
   try {
     let url = '';
-    const ngrokUrl = 'https://829c-240e-398-b3b4-5ea0-a43f-e223-ffb2-e8a6.ngrok-free.app'; // 使用 ngrok 提供的公共 URL
+    const ngrokUrl = 'https://e2e0-240e-398-b3b4-5ea0-a43f-e223-ffb2-e8a6.ngrok-free.app'; // 使用 ngrok 提供的公共 URL
   
     if (api === 'api1') {
       // 使用 ngrok 提供的公共 URL
