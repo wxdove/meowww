@@ -311,7 +311,7 @@ const playTrack = (index) => {
       if (!currentSound.playing()) {
         showError("This music is paid music and cannot be played for the time being......");
       }
-  }, 15000);
+  }, 20000);
   if (!dom.playerContainer.classList.contains('active')) {
     dom.playerContainer.classList.add('active');
   }
