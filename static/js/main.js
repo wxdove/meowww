@@ -76,20 +76,31 @@ const searchHandler = _.debounce(async (query, api) => {
   showLoading(true);  // 显示加载动画
   try {
     let url = '';
+    const ngrokUrl = 'https://829c-240e-398-b3b4-5ea0-a43f-e223-ffb2-e8a6.ngrok-free.app'; // 使用 ngrok 提供的公共 URL
+  
     if (api === 'api1') {
-      url = `https://829c-240e-398-b3b4-5ea0-a43f-e223-ffb2-e8a6.ngrok-free.app/search1?q=${query}`;  // 网易云音乐的搜索接口
+      // 使用 ngrok 提供的公共 URL
+      url = `${ngrokUrl}/search1?q=${query}`;  // 网易云音乐的搜索接口
     } else if (api === 'api2') {
-      url = `https://829c-240e-398-b3b4-5ea0-a43f-e223-ffb2-e8a6.ngrok-free.app/search2?q=${query}`;  // 酷狗音乐的搜索接口
+      url = `${ngrokUrl}/search2?q=${query}`;  // 酷狗音乐的搜索接口
     } else if (api === 'api3') {
-      url = `http://192.168.1.10:5000/search3?q=${query}`;  // 酷我音乐的搜索接口
+      url = `${ngrokUrl}/search3?q=${query}`;  // 酷我音乐的搜索接口
     }
-
-    const response = await fetch(url);
+  
+    const response = await fetch(url, {
+      method: 'GET',  // 请求方法
+      headers: {
+        'ngrok-skip-browser-warning': 'true',  // 设置请求头，避免 ngrok 浏览器警告
+        'Content-Type': 'application/json'    // 设置请求内容类型为 JSON
+      }
+    });
+  
     const songs = await response.json();
     renderResults(songs);  // 渲染搜索结果
   } catch (error) {
     console.error('搜索失败:', error);
   }
+  
 }, SEARCH_DELAY);
 
 // 监听搜索图标点击事件
