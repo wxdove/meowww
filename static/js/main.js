@@ -73,7 +73,7 @@ const searchHandler = _.debounce(async (query, api) => {
   showLoading(true);  // 显示加载动画
   try {
     let url = '';
-    const ngrokUrl = 'https://4cd7-240e-398-b3bc-4ce0-8f-cc04-ca82-eece.ngrok-free.app -> http://localhost:5000'; // 使用 ngrok 提供的公共 URL
+    const ngrokUrl = 'https://e76a-62-210-116-202.ngrok-free.app -> http://localhost:5000'; // 使用 ngrok 提供的公共 URL
     if (api === 'api1') {
       // 使用 ngrok 提供的公共 URL
       url = `${ngrokUrl}/search1?q=${query}`;  // 网易云音乐的搜索接口
