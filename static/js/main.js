@@ -61,9 +61,6 @@ const showError = (message) => {
     </div>`;
 };
 
-// 防抖搜索函数
-// 搜索功能（防抖处理）
-// 搜索功能（防抖处理）
 const searchHandler = _.debounce(async (query, api) => {
   if (!query.trim()) {
     dom.resultsContainer.innerHTML = `
@@ -76,17 +73,15 @@ const searchHandler = _.debounce(async (query, api) => {
   showLoading(true);  // 显示加载动画
   try {
     let url = '';
-    const ngrokUrl = 'https://e2e0-240e-398-b3b4-5ea0-a43f-e223-ffb2-e8a6.ngrok-free.app'; // 使用 ngrok 提供的公共 URL
-  
+    const ngrokUrl = 'http://127.0.0.1:5000'; // 使用 ngrok 提供的公共 URL
     if (api === 'api1') {
       // 使用 ngrok 提供的公共 URL
       url = `${ngrokUrl}/search1?q=${query}`;  // 网易云音乐的搜索接口
     } else if (api === 'api2') {
       url = `${ngrokUrl}/search2?q=${query}`;  // 酷狗音乐的搜索接口
-    } else if (api === 'api3') {
-      url = `${ngrokUrl}/search3?q=${query}`;  // 酷我音乐的搜索接口
+    } else if (url==='') {
+      window.alert("You haven't selected the music interface yet")
     }
-  
     const response = await fetch(url, {
       method: 'GET',  // 请求方法
       headers: {
@@ -94,29 +89,24 @@ const searchHandler = _.debounce(async (query, api) => {
         'Content-Type': 'application/json'    // 设置请求内容类型为 JSON
       }
     });
-  
+
     const songs = await response.json();
     renderResults(songs);  // 渲染搜索结果
   } catch (error) {
     console.error('搜索失败:', error);
   }
-  
+
 }, SEARCH_DELAY);
 
 // 监听搜索图标点击事件
 document.getElementById('searchBtn').addEventListener('click', function() {
   const query = document.getElementById('searchInput').value.trim();  // 获取输入框的内容
   const selectedAPI = document.getElementById('apiSelect').value;    // 获取选择的API
-
-  // 调用搜索处理函数，传递查询内容和选择的API
-  searchHandler(query, selectedAPI);
-});
-
-// 监听搜索图标点击事件
-document.getElementById('searchBtn').addEventListener('click', function() {
-  const query = document.getElementById('searchInput').value.trim();  // 获取输入框的内容
-  const selectedAPI = document.getElementById('apiSelect').value;    // 获取选择的API
-  searchHandler(query, selectedAPI);
+  if (document.getElementById('apiSelect').value===''){
+    window.alert("You haven't selected the music interface yet")
+  }else{
+      searchHandler(query, selectedAPI);
+  }
 });
 
 const renderResults = (songs) => {
