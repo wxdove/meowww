@@ -80,7 +80,7 @@ const searchHandler = _.debounce(async (query, api) => {
     } else if (api === 'api2') {
       url = `${ngrokUrl}/search2?q=${query}`;  // 酷狗音乐的搜索接口
     } else if (url==='') {
-      window.alert("You haven't selected the music interface yet")
+      window.alert("你还没选择接口")
     }
     const response = await fetch(url, {
       method: 'GET',  // 请求方法
@@ -103,7 +103,7 @@ document.getElementById('searchBtn').addEventListener('click', function() {
   const query = document.getElementById('searchInput').value.trim();  // 获取输入框的内容
   const selectedAPI = document.getElementById('apiSelect').value;    // 获取选择的API
   if (document.getElementById('apiSelect').value===''){
-    window.alert("You haven't selected the music interface yet")
+    window.alert("你还没选择接口")
   }else{
       searchHandler(query, selectedAPI);
   }
